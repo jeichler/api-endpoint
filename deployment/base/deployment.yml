@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: api-endpoint
+    app.openshift.io/runtime: quarkus
+  name: api-endpoint
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: api-endpoint
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name: api-endpoint
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferedDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - api-endpoint
+              topologyKey: kubernetes.io/hostname
+      containers:
+      - env:
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: QUARKUS_OPTS
+          value: -Dquarkus.http.host=0.0.0.0
+        - name: QUARKUS_HOME
+          value: /home/quarkus/
+        image: quay.io/jaeichle/api-endpoint:latest 
+        imagePullPolicy: IfNotPresent
+        name: api-endpoint
+        ports:
+        - containerPort: 9080
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "25m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccountName: api-endpoint
+      serviceAccount: api-endpoint
+      terminationGracePeriodSeconds: 30

@@ -1,0 +1,27 @@
+---
+namespace: api-endpoint
+bases:
+- ../../base
+patchesJson6902:
+  - target:
+      version: v1
+      kind: Namespace
+      name: mesh-member-1
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: api-endpoint
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: api-endpoint
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: image-registry.openshift-image-registry:5000/api-endpoint/api-endpoint:latest
+      - op: add
+        path: /spec/template/metadata/annotations
+        value:
+          sidecar.istio.io/inject: "true"
+...
