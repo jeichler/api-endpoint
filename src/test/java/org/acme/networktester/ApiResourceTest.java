@@ -18,4 +18,28 @@ public class ApiResourceTest {
              .body(is("PONG"));
     }
 
+    @Test
+    public void testStatus() {
+        given()
+          .when().get("/status/503")
+          .then()
+             .statusCode(503);
+    }
+
+    @Test
+    public void testStatusWhenInvalidNumber() {
+        given()
+          .when().get("/status/005")
+          .then()
+            .statusCode(400);
+    }
+
+    @Test
+    public void testStatusWhenNoNumberButString() {
+        given()
+          .when().get("/status/foo")
+          .then()
+            .statusCode(400);
+    }
+
 }
