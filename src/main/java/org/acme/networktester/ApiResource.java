@@ -1,9 +1,14 @@
 package org.acme.networktester;
 
-import java.net.http.HttpResponse;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -39,5 +44,15 @@ public class ApiResource {
             .status(responseStatus)
             .entity("you requested status code: " + status)
             .build();
+    }
+
+    @GET
+    @Path("/headers")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Map<String,String> hello(@Context HttpHeaders headers) {
+        Map<String, String> resultMap = new HashMap<>();
+        headers.getRequestHeaders().forEach(
+                (key, values) -> resultMap.put(key, String.join(", ", values)));
+        return resultMap;
     }
 }

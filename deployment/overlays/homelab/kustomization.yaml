@@ -1,5 +1,5 @@
 ---
-namespace: api-endpoint
+namespace: bookinfo
 bases:
 - ../../base
 patchesJson6902:
@@ -10,16 +10,13 @@ patchesJson6902:
     patch: |-
       - op: replace
         path: /metadata/name
-        value: api-endpoint
+        value: bookinfo
   - target:
       group: apps
       version: v1
       kind: Deployment
       name: api-endpoint
     patch: |-
-      - op: replace
-        path: /spec/template/spec/containers/0/image
-        value: image-registry.openshift-image-registry:5000/api-endpoint/api-endpoint:latest
       - op: add
         path: /spec/template/metadata/annotations
         value:
