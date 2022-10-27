@@ -1,6 +1,8 @@
 package org.acme.networktester;
 
 import io.quarkus.test.junit.QuarkusTest;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -8,6 +10,13 @@ import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 public class ApiResourceTest {
+
+  private static final String MOCK_PODNAME = "my-podname";
+
+    @BeforeAll
+    public static void beforeAll() {
+      System.setProperty("POD_NAME", MOCK_PODNAME);
+    }
 
     @Test
     public void testHelloEndpoint() {
@@ -42,4 +51,12 @@ public class ApiResourceTest {
             .statusCode(400);
     }
 
+    @Test
+    public void testPodnameIsReturned() {
+      given()
+        .when().get("/podname")
+        .then()
+        .statusCode(200)
+        .body(is(MOCK_PODNAME));
+    }
 }
