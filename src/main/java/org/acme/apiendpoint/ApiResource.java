@@ -1,4 +1,4 @@
-package org.acme.networktester;
+package org.acme.apiendpoint;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

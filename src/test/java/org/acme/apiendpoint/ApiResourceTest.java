@@ -1,4 +1,4 @@
-package org.acme.networktester;
+package org.acme.apiendpoint;
 
 import io.quarkus.test.junit.QuarkusTest;
 
