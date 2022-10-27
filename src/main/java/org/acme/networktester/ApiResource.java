@@ -13,8 +13,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
 @Path("/")
 public class ApiResource {
+
+    @ConfigProperty(name = "POD_NAME", defaultValue = "NONE")
+    String podName;
 
     @GET
     @Path("/ping")
@@ -54,5 +59,12 @@ public class ApiResource {
         headers.getRequestHeaders().forEach(
                 (key, values) -> resultMap.put(key, String.join(", ", values)));
         return resultMap;
+    }
+
+    @GET
+    @Path("/podname")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getPodName() {
+        return podName;
     }
 }

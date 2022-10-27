@@ -35,6 +35,10 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
         - name: QUARKUS_OPTS
           value: -Dquarkus.http.host=0.0.0.0
         - name: QUARKUS_HOME
