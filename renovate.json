@@ -1,13 +1,13 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base",
-    ":rebaseStalePrs",
-    ":semanticCommits",
-    "docker:pinDigests"
-  ],
+    "extends": [
+        "config:base",
+        ":rebaseStalePrs",
+        ":semanticCommits",
+        "docker:pinDigests"
+    ],
     "rebaseWhen": "behind-base-branch",
-    "automergeType": "branch",
+    "automergeType": "pr",
     "platformAutomerge": true,
     "packageRules": [
       {
