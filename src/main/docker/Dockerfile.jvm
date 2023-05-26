@@ -21,7 +21,7 @@
 # docker run -i --rm -p 8080:8080 -p 5005:5005 -e JAVA_ENABLE_DEBUG="true" quarkus/api-endpoint-jvm
 #
 ###
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.7 
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.8-860@sha256:621f5245fb3e8597a626163cdf1229e1f8311e07ab71bb1e9332014b51c59f9c 
 
 ARG JAVA_PACKAGE=java-11-openjdk-headless
 ARG RUN_JAVA_VERSION=1.3.8
