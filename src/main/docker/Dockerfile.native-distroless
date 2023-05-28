@@ -14,7 +14,7 @@
 # docker run -i --rm -p 8080:8080 quarkus/api-endpoint
 #
 ###
-FROM quay.io/quarkus/quarkus-distroless-image:2.0@sha256:91a62d4d4a14d72bd5ec5f0321cdddcae014815f044c909c71e711b331c38bce
+FROM quay.io/quarkus/quarkus-distroless-image:2.0@sha256:34f601073ae7774ff2ddbeaff6f11432ba40374d134e95f8187c3f5093a8df97
 COPY target/*-runner /application
 
 EXPOSE 8080
