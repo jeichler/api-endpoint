@@ -1,11 +1,7 @@
 ####
 # This Dockerfile is used in order to build a distroless container that runs the Quarkus application in native (no JVM) mode
 #
-# Before building the container image run:
-#
-# ./mvnw package -Pnative
-#
-# Then, build the image with:
+# Build the image with:
 #
 # docker build -f src/main/docker/Dockerfile.native-distroless -t quarkus/api-endpoint .
 #
@@ -14,8 +10,20 @@
 # docker run -i --rm -p 8080:8080 quarkus/api-endpoint
 #
 ###
+## Stage 1 : build with maven builder image with native capabilities
+FROM quay.io/quarkus/ubi-quarkus-native-image:22.3-java11@sha256:f64ba34acf265a995ef0e3040e33c4e8457b76ad25736e6023e7e81284aa0616 AS build
+COPY --chown=quarkus:quarkus ./mvnw /code/mvnw
+COPY --chown=quarkus:quarkus .mvn /code/.mvn
+COPY --chown=quarkus:quarkus pom.xml /code/
+USER quarkus
+WORKDIR /code
+# renovate: datasource=maven depName=org.apache.maven.plugins:maven-dependency-plugin
+RUN ./mvnw -B org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline
+COPY src /code/src
+RUN ./mvnw package -Pnative
+
 FROM quay.io/quarkus/quarkus-distroless-image:2.0@sha256:34f601073ae7774ff2ddbeaff6f11432ba40374d134e95f8187c3f5093a8df97
-COPY target/*-runner /application
+COPY --from=build /code/target/*-runner /application
 
 EXPOSE 8080
 USER nonroot
