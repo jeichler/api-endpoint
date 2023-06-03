@@ -11,7 +11,7 @@ COPY src /code/src
 RUN ./mvnw package -Pnative
 
 ## Stage 2 : create the docker final image
-FROM registry.access.redhat.com/ubi9/ubi-minimal:9.2
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.2-484@sha256:b00f7556d64a698aad6cb63bb75b2692f1538926c6f619d6123cbc20a74239ec
 LABEL org.opencontainers.image.source="https://github.com/jeichler/tester-api-endpoint"
 WORKDIR /work/
 COPY --from=build /code/target/*-runner /work/application
