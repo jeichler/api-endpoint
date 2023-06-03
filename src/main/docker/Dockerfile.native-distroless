@@ -24,6 +24,7 @@ COPY src /code/src
 RUN ./mvnw package -Pnative
 
 FROM quay.io/quarkus/quarkus-distroless-image:2.0@sha256:34f601073ae7774ff2ddbeaff6f11432ba40374d134e95f8187c3f5093a8df97
+LABEL org.opencontainers.image.source="https://github.com/jeichler/api-endpoint"
 COPY --from=build /code/target/*-runner /application
 
 EXPOSE 8080
