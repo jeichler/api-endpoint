@@ -7,6 +7,7 @@ on:
     paths-ignore:
       - "deployment/**"
       - ".github/worflows/**"
+      - "src/main/docker/Dockerfile"
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * 0' # weekly
