@@ -1,18 +1,10 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "config:base",
-        ":rebaseStalePrs",
-        ":semanticCommits",
-        "docker:pinDigests"
+      "local>jeichler/renovate-bot",
+      "default:automergeDigest"
     ],
-    "rebaseWhen": "behind-base-branch",
-    "automergeType": "pr",
-    "platformAutomerge": true,
-    "packageRules": [
-      {
-        "matchUpdateTypes": ["minor", "patch"],
-        "automerge": true
-      }
-    ]    
+    "kubernetes": {
+      "fileMatch": ["deployment/.+\\.yaml$"]
+    }
   }
