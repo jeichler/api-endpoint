@@ -6,7 +6,7 @@ on:
     - main
     paths-ignore:
       - "deployment/**"
-      - ".github/worflows/**"
+      - ".github/workflows/**"
       - "src/main/docker/Dockerfile"
       - "src/main/docker/Dockerfile.native-distroless"
       - ".gitigore"
