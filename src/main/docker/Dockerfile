@@ -1,5 +1,5 @@
 ## Stage 1 : build with maven builder image with native capabilities
-FROM quay.io/quarkus/ubi-quarkus-native-image:22.3-java11@sha256:f64ba34acf265a995ef0e3040e33c4e8457b76ad25736e6023e7e81284aa0616 AS build
+FROM quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk17@sha256:18494105bcb5fc549e59e00daee9020256451c5ec06ea2ad11722338d3aa2546 AS build
 COPY --chown=quarkus:quarkus ./mvnw /code/mvnw
 COPY --chown=quarkus:quarkus .mvn /code/.mvn
 COPY --chown=quarkus:quarkus pom.xml /code/
