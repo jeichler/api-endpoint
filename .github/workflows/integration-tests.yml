@@ -9,7 +9,7 @@ on:
       - ".github/workflows/**"
       - "src/main/docker/Dockerfile"
       - "src/main/docker/Dockerfile.native-distroless"
-      - ".gitigore"
+      - ".gitignore"
       - ".dockerignore"
       - "README.md"
 
