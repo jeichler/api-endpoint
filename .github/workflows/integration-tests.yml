@@ -4,14 +4,6 @@ on:
   pull_request:
     branches:
     - main
-    paths-ignore:
-      - "deployment/**"
-      - ".github/workflows/**"
-      - "src/main/docker/Dockerfile"
-      - "src/main/docker/Dockerfile.native-distroless"
-      - ".gitigore"
-      - ".dockerignore"
-      - "README.md"
 
 jobs:
   pass-unit-tests:
