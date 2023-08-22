@@ -8,6 +8,11 @@ on:
       - "deployment/**"
       - ".github/worflows/**"
       - "src/main/docker/Dockerfile"
+      - "src/test/**"
+      - "README.md"
+      - ".gitignore"
+      - ".dockerignore"
+
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * 0' # weekly
