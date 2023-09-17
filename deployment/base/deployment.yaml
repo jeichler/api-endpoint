@@ -43,7 +43,7 @@ spec:
           value: -Dquarkus.http.host=0.0.0.0
         - name: QUARKUS_HOME
           value: /home/quarkus/
-        image: quay.io/jaeichle/api-endpoint:latest@sha256:e13f4eae92e8f4fafd95325121672d4454f9ebe09650472aed28082d7ffd9570
+        image: quay.io/jaeichle/api-endpoint:latest@sha256:6784bf053155c71233e482a18d79b5251a8be85bad62afb0d3eea5a455dbb3bf
         imagePullPolicy: IfNotPresent
         name: api-endpoint
         ports:
