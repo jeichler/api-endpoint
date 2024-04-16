@@ -1,9 +1,9 @@
 ---
 namespace: api-endpoint
 resources:
-- namespace.yml
-- serviceaccount.yml
-- service.yml
-- rbac.yml
-- deployment.yml
+- namespace.yaml
+- serviceaccount.yaml
+- service.yaml
+- rbac.yaml
+- deployment.yaml
 ...
