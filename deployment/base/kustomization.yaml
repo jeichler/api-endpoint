@@ -1,7 +1,5 @@
 ---
-namespace: api-endpoint
 resources:
-- namespace.yaml
 - serviceaccount.yaml
 - service.yaml
 - rbac.yaml
