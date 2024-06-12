@@ -6,7 +6,7 @@ COPY --chown=quarkus:quarkus pom.xml /code/
 USER quarkus
 WORKDIR /code
 # renovate: datasource=maven depName=org.apache.maven.plugins:maven-dependency-plugin
-ARG MVN_DEP_PLUGIN_VERSION=3.6.1
+ARG MVN_DEP_PLUGIN_VERSION=3.7.0
 RUN ./mvnw -B org.apache.maven.plugins:maven-dependency-plugin:${MVN_DEP_PLUGIN_VERSION}:go-offline
 COPY src /code/src
 RUN ./mvnw package -Pnative
