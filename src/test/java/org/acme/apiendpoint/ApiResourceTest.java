@@ -46,7 +46,7 @@ public class ApiResourceTest {
     @Test
     public void testPodnameIsReturned() {
       given()
-        .when().get("/podname")
+        .when().get("/pod")
         .then()
         .statusCode(200)
         .body(is("my-pod"));
