@@ -18,7 +18,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 @Path("/")
 public class ApiResource {
 
-    @ConfigProperty(name = "podname", defaultValue = "no-podname-provided")
+    @ConfigProperty(name = "pod.name", defaultValue = "no-podname-provided")
     String podName;
 
     @GET
@@ -62,8 +62,8 @@ public class ApiResource {
     }
 
     @GET
-    @Path("/podname")
-    public String getPodName() {
+    @Path("/pod")
+    public String getPod() {
         return podName;
     }
 }
