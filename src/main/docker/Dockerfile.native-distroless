@@ -23,7 +23,7 @@ RUN ./mvnw -B org.apache.maven.plugins:maven-dependency-plugin:${MVN_DEP_PLUGIN_
 COPY src /code/src
 RUN ./mvnw package -Pnative
 
-FROM quay.io/quarkus/quarkus-distroless-image:2.0@sha256:afc7f202246a7ebb8c4d165976dad570f66eee289e14708d0c90d3c8a5af3fd5
+FROM quay.io/quarkus/quarkus-distroless-image:2.0@sha256:880e43859cc1301a4db5b781ef9835d36a529c2539e75d9104eaf60833207968
 LABEL org.opencontainers.image.source="https://github.com/jeichler/api-endpoint"
 COPY --from=build /code/target/*-runner /application
 
